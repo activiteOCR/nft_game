@@ -1,4 +1,6 @@
 # nft_game
+V0.1.0
+
 nft_game dev
 
 For this project to do if you start from scratch:
