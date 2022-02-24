@@ -1,6 +1,6 @@
 // constants
 import Web3 from "web3";
-import LipToken from "../../contracts/LipToken.json";
+import bbbearsToken from "../../contracts/bbbearsToken.json";
 // log
 import { fetchData } from "../data/dataActions";
 
@@ -45,14 +45,14 @@ export const connect = () => {
         });
         console.log(networkId);
         if (networkId == 137) {
-          const lipToken = new web3.eth.Contract(
-            LipToken.abi,
-            "0x247700BBab4dC984547444eCaa95f4E3Ed5dEC74"
+          const bbbearsToken = new web3.eth.Contract(
+            bbbearsToken.abi,
+            "0x26970e011DdaDffFc91545B60B91d97c24d89Afc"
           );
           dispatch(
             connectSuccess({
               account: accounts[0],
-              lipToken: lipToken,
+              bbbearsToken: bbbearsToken,
               web3: web3,
             })
           );
