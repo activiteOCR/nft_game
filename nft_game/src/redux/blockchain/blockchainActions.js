@@ -40,26 +40,27 @@ export const connect = () => {
         const accounts = await window.ethereum.request({
           method: "eth_accounts",
         });
+        console.log(accounts);
         const networkId = await window.ethereum.request({
           method: "net_version",
         });
         console.log(networkId);
         const bbbearsTokenNetworkData = await bbbearsToken.networks[networkId];
         if (bbbearsTokenNetworkData) {
-          const bbbearsToken = new web3.eth.Contract(
+          const bbbearstoken = new web3.eth.Contract(
             bbbearsToken.abi,
             bbbearsTokenNetworkData.address
           );
         /*
-        if (networkId == 1337) {
+        if (networkId === 137) {
           const bbbearsToken = new web3.eth.Contract(
             bbbearsToken.abi,
-            "0x26970e011DdaDffFc91545B60B91d97c24d89Afc"
+            "0xb2643Da70AA26E5F03CA9742Bcd696636759f47A"
           );*/
           dispatch(
             connectSuccess({
               account: accounts[0],
-              bbbearsToken: bbbearsToken,
+              bbbearsToken: bbbearstoken,
               web3: web3,
             })
           );
