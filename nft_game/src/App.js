@@ -11,9 +11,9 @@ function App() {
 
   console.table(blockchain);
 
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(connect());
-  },[dispatch]);
+  },[dispatch]);*/
 
   return (
     <div className="App">

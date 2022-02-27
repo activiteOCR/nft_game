@@ -20809,10 +20809,16 @@
       "links": {},
       "address": "0x96b63bb7C3E78C61ffcA03E71348a13Df8F148F9",
       "transactionHash": "0x34045a8b1e05e87f8e48abac710fdd0b0766bb0e8409e889ec7dcb605607741c"
+    },
+    "1645982351168": {
+      "events": {},
+      "links": {},
+      "address": "0x99A0f3b8FBC4381F1A8b34abC39eB6B3EdAF492C",
+      "transactionHash": "0x60d51ec5936704814d5e0abd9ec056b8760ef6567c41c5ae766e4f3c706b51cd"
     }
   },
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-02-24T18:49:44.576Z",
+  "updatedAt": "2022-02-27T17:35:36.485Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

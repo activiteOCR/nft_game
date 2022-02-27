@@ -44,11 +44,18 @@ export const connect = () => {
           method: "net_version",
         });
         console.log(networkId);
-        if (networkId == 137) {
+        const bbbearsTokenNetworkData = await bbbearsToken.networks[networkId];
+        if (bbbearsTokenNetworkData) {
+          const bbbearsToken = new web3.eth.Contract(
+            bbbearsToken.abi,
+            bbbearsTokenNetworkData.address
+          );
+        /*
+        if (networkId == 1337) {
           const bbbearsToken = new web3.eth.Contract(
             bbbearsToken.abi,
             "0x26970e011DdaDffFc91545B60B91d97c24d89Afc"
-          );
+          );*/
           dispatch(
             connectSuccess({
               account: accounts[0],
