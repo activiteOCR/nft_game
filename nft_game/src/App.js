@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import {useDispatch, useSelector} from "react-redux";
-import { connect } from "./redux/blockchain/blockchainActions";
+import {connect} from "./redux/blockchain/blockchainActions";
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Account: {blockchain.account}
         </p>
         <a
           className="App-link"

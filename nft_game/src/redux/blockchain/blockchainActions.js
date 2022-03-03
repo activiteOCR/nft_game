@@ -36,16 +36,18 @@ export const connect = () => {
     dispatch(connectRequest());
     if (window.ethereum) {
       let web3 = new Web3(window.ethereum);
+      //window.ethereum.enable(); //added this line 03/01/2022 to reconnect the account of my metamask wallet
       try {
         const accounts = await window.ethereum.request({
           method: "eth_accounts",
         });
-        console.log(accounts);
+        console.log("account:",accounts);
         const networkId = await window.ethereum.request({
           method: "net_version",
         });
-        console.log(networkId);
+        console.log("network:",networkId);
         const bbbearsTokenNetworkData = await bbbearsToken.networks[networkId];
+        console.log("network:",bbbearsTokenNetworkData);
         if (bbbearsTokenNetworkData) {
           const bbbearstoken = new web3.eth.Contract(
             bbbearsToken.abi,
@@ -53,7 +55,7 @@ export const connect = () => {
           );
         /*
         if (networkId === 137) {
-          const bbbearsToken = new web3.eth.Contract(
+          const bbbearstoken = new web3.eth.Contract(
             bbbearsToken.abi,
             "0xb2643Da70AA26E5F03CA9742Bcd696636759f47A"
           );*/

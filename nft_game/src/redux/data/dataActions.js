@@ -41,7 +41,7 @@ export const fetchData = (account) => {
         })
       );
     } catch (err) {
-      console.log(err);
+      //console.log(err); // comment this due to TypeError: Cannot read properties of undefined (reading 'methods')
       dispatch(fetchDataFailed("Could not load data from contract."));
     }
   };
