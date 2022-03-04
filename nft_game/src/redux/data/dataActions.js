@@ -25,19 +25,19 @@ export const fetchData = (account) => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
-      let allLips = await store
+      let allbbbears = await store
         .getState()
-        .blockchain.lipToken.methods.getLips()
+        .blockchain.bbbearsToken.methods.getBBBears()
         .call();
-      let allOwnerLips = await store
+      let allOwnerbbbears = await store
         .getState()
-        .blockchain.lipToken.methods.getOwnerLips(account)
+        .blockchain.bbbearsToken.methods.getOwnerBBBears(account)
         .call();
 
       dispatch(
         fetchDataSuccess({
-          allLips,
-          allOwnerLips,
+          allbbbears,
+          allOwnerbbbears,
         })
       );
     } catch (err) {
