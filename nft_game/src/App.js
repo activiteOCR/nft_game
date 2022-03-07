@@ -4,30 +4,51 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
+import LipRenderer from "./components/lipRenderer";
+import _color from "./assets/images/bg/_color.png";
 
 
 function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
+  const [loading, setLoading] = useState(false);
 
   console.log(data);
 
   const mintNFT = (_account, _name) => {
-    //setLoading(true);
+    setLoading(true);
     blockchain.bbbearsToken.methods
       .createRandomBBBears(_name)
       .send({
         from: _account,
-        value: 1000000000000000000
-        //value: blockchain.web3.utils.toWei("0.01", "ether"),
+        //value: 1000000000000000000
+        value: blockchain.web3.utils.toWei("0.01", "ether"),
       })
       .once("error", (err) => {
-        //setLoading(false);
+        setLoading(false);
         console.log(err);
       })
       .then((receipt) => {
-        //setLoading(false);
+        setLoading(false);
+        console.log(receipt);
+        dispatch(fetchData(blockchain.account));
+      });
+  };
+
+  const levelUpBear = (_account, _id) => {
+    setLoading(true);
+    blockchain.bbbearsToken.methods
+      .levelUp(_id)
+      .send({
+        from: _account,
+      })
+      .once("error", (err) => {
+        setLoading(false);
+        console.log(err);
+      })
+      .then((receipt) => {
+        setLoading(false);
         console.log(receipt);
         dispatch(fetchData(blockchain.account));
       });
@@ -40,7 +61,7 @@ function App() {
   }, [blockchain.bbbearsToken]);
 
   return (
-    <s.Screen >
+    <s.Screen image={_color}>
       {blockchain.account === "" || blockchain.bbbearsToken === null ? (
         <s.Container flex={1} ai={"center"} jc={"center"}>
           <s.TextTitle>Connect to the game</s.TextTitle>
@@ -63,7 +84,7 @@ function App() {
           <s.TextTitle>Welcome to the game</s.TextTitle>
           <s.SpacerSmall />
           <button
-            //disabled={loading ? 1 : 0}
+            disabled={loading ? 1 : 0}
             onClick={(e) => {
               e.preventDefault();
               mintNFT(blockchain.account, "Unknown");
@@ -72,22 +93,33 @@ function App() {
             CREATE NFT LIP
           </button>
           <s.SpacerMedium />
-          <s.Container jc={"space-between"} fd={"row"} style={{ flexWrap: "wrap" }}>
-            {data.allbbbears.map((item) => {
+          <s.Container jc={"center"} fd={"row"} style={{ flexWrap: "wrap" }}>
+            {data.allbbbears.map((item, index) => {
               return (
-                <>
+                <s.Container key={index} style={{ padding: "15px" }}>
+                  <LipRenderer lip={item} />
+                  <s.SpacerXSmall />
                   <s.Container>
                     <s.TextDescription>ID: {item.id}</s.TextDescription>
                     <s.TextDescription>DNA: {item.dna}</s.TextDescription>
                     <s.TextDescription>LEVEL: {item.level}</s.TextDescription>
                     <s.TextDescription>NAME: {item.name}</s.TextDescription>
                     <s.TextDescription>RARITY: {item.rarity}</s.TextDescription>
+                    <s.SpacerXSmall />
+                    <button
+                      disabled={loading ? 1 : 0}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        levelUpBear(blockchain.account, item.id);
+                      }}
+                    >
+                      Level Up
+                    </button>
                   </s.Container>
-                  <s.SpacerMedium />
-                  </>
+                </s.Container>
               );
             })}
-            </s.Container>
+          </s.Container>
         </s.Container>
       )}
     </s.Screen>

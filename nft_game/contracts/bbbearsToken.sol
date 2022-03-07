@@ -12,7 +12,7 @@ contract bbbearsToken is ERC721, Ownable {
 
     uint256 COUNTER;
 
-    uint256 fee = 1 ether;
+    uint256 fee = 0.01 ether;
 
     struct Bear {
         string name;
