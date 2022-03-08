@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
-import LipRenderer from "./components/lipRenderer";
+import BearRenderer from "./components/bearRenderer";
 import _color from "./assets/images/bg/_color.png";
 
 
@@ -22,7 +22,6 @@ function App() {
       .createRandomBBBears(_name)
       .send({
         from: _account,
-        //value: 1000000000000000000
         value: blockchain.web3.utils.toWei("0.01", "ether"),
       })
       .once("error", (err) => {
@@ -97,7 +96,7 @@ function App() {
             {data.allbbbears.map((item, index) => {
               return (
                 <s.Container key={index} style={{ padding: "15px" }}>
-                  <LipRenderer lip={item} />
+                  <BearRenderer lip={item} />
                   <s.SpacerXSmall />
                   <s.Container>
                     <s.TextDescription>ID: {item.id}</s.TextDescription>

@@ -5,7 +5,7 @@ import _r1 from "../assets/images/rarity/_rarity_1.png";
 import _r2 from "../assets/images/rarity/_rarity_2.png";
 import _r3 from "../assets/images/rarity/_rarity_3.png";
 
-const LipRenderer = ({ lip = null, size = 200, style }) => {
+const BearRenderer = ({ lip = null, size = 200, style }) => {
   if (!lip) {
     return null;
   }
@@ -73,4 +73,4 @@ const LipRenderer = ({ lip = null, size = 200, style }) => {
   );
 };
 
-export default LipRenderer;
+export default BearRenderer;
